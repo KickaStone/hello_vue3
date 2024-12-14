@@ -15,6 +15,7 @@
       function showTel(){ alert(tel) }
 
       return {name, age, tel, changeName, changeAge, showTel};
+      // return () => "haha" // return a render function
     }
   }
 </script>
