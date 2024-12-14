@@ -1,23 +1,18 @@
-<script lang="ts">
-  export default {
-    name: 'Person',
-    setup(){
-      // data
-      let name = 'Bob';  // name is not Responsive
-      let age = 50;      // age is not Responsive
-      let tel = '1234567890';
+<!--<script lang="ts">-->
+<!--  export default {-->
+<!--    name: 'Person',-->
+<!--  }-->
+<!--</script>-->
 
-      // setup function : this = undefined
+<script lang="ts" setup name="person123">
+  let name = 'Bob';  // name is not Responsive
+  let age = 50;      // age is not Responsive
+  let tel = '1234567890';
 
-      // methods
-      function changeName(){ name = 'Mike'}
-      function changeAge(){ age = age + 1 }
-      function showTel(){ alert(tel) }
-
-      return {name, age, tel, changeName, changeAge, showTel};
-      // return () => "haha" // return a render function
-    }
-  }
+  // methods
+  function changeName(){ name = 'Mike'}
+  function changeAge(){ age = age + 1 }
+  function showTel(){ alert(tel) }
 </script>
 
 <template>
