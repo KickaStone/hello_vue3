@@ -1,23 +1,20 @@
 <script lang="ts">
   export default {
     name: 'Person',
-    data(){
-      return {
-        name: "Bob",
-        age: 35,
-        tel: "12345678"
-      }
-    },
-    methods: {
-      showTel(){
-        alert(this.tel);
-      },
-      changeName(){
-        this.name = "Mike";
-      },
-      changeAge(){
-        this.age = this.age + 1;
-      }
+    setup(){
+      // data
+      let name = 'Bob';  // name is not Responsive
+      let age = 50;      // age is not Responsive
+      let tel = '1234567890';
+
+      // setup function : this = undefined
+
+      // methods
+      function changeName(){ name = 'Mike'}
+      function changeAge(){ age = age + 1 }
+      function showTel(){ alert(tel) }
+
+      return {name, age, tel, changeName, changeAge, showTel};
     }
   }
 </script>
@@ -26,9 +23,9 @@
   <div class="person">
     <h2>name:{{name}}</h2>
     <h2>age:{{age}}</h2>
-    <button @click="showTel">Show telephone</button>
     <button @click="changeName">Change Name</button>
     <button @click="changeAge">Change Age</button>
+    <button @click="showTel">Show telephone</button>
   </div>
 </template>
 
