@@ -1,6 +1,8 @@
 <script lang="ts">
+  import Person from "./components/Person.vue";
   export default {
-    name: 'App' // Component name
+    name: 'App', // Component name,
+    components:{Person}
   }
 </script>
 
@@ -8,9 +10,10 @@
   <div>
     <h1 class="app">
       Hello World !
+      <Person/>
     </h1>
   </div>
-  
+
 </template>
 
 <style scoped>
