@@ -1,23 +1,19 @@
-<!--<script lang="ts">-->
-<!--  export default {-->
-<!--    name: 'Person',-->
-<!--  }-->
-<!--</script>-->
-
-<script lang="ts" setup name="person123">
-  let name = 'Bob';  // name is not Responsive
-  let age = 50;      // age is not Responsive
+<script lang="ts" setup name="Person">
+  import {ref} from 'vue'
+  let name = ref('Bob');  // name is Responsive
+  let age = ref(19);      // age is Responsive
   let tel = '1234567890';
 
   // methods
-  function changeName(){ name = 'Mike'}
-  function changeAge(){ age = age + 1 }
+  function changeName(){ name.value = 'Mike'}
+  function changeAge(){ age.value = age.value + 1 }
   function showTel(){ alert(tel) }
 </script>
 
 <template>
   <div class="person">
     <h2>name:{{name}}</h2>
+<!--  not name.value  -->
     <h2>age:{{age}}</h2>
     <button @click="changeName">Change Name</button>
     <button @click="changeAge">Change Age</button>
