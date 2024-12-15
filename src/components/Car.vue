@@ -1,22 +1,24 @@
 <script setup lang="ts">
-  import {ref} from "vue";
+import {reactive, ref} from "vue";
 
   // data
-  let car = ref({brand: "BWM", price: 100000000})
-  let games = ref([
-    {id:'game1', name:'Super Mario'},
-      {id:'game2', name:'Steel'},
-      {id:'game3', name:'Steel'},
-  ])
+  let car = reactive({brand: "BWM", price: 100000000})
+  let sum = ref(0);
 
   // methods
   function changePrice(){
-    car.value.price += 100; // .value
+    car.price += 100; // .value
     console.log(car)
   }
 
-  function changeGameName(){
-    games.value[0].name = 'Super Mario 2'; // `ref` <=> .value
+  function changeSum(){
+    sum.value += 100;
+  }
+
+  function changeCar(){
+    // car = {brand: "Benz", price: 100000000} // not working
+    // car = reactive({brand: "Benz", price: 100000000}) // still not working
+    Object.assign(car, {brand: "Benz", price: 100000000}) // ok
   }
 </script>
 
@@ -25,13 +27,15 @@
     <h2>A {{car.brand}} car, price ${{car.price}}.</h2>
     <button @click="changePrice">Change Price</button>
 
-    <ul>
-      <li v-for="g in games" :key="g.id">{{g.name}}</li>
-    </ul>
-    <button @click="changeGameName">Change the first game's name</button>
+    <h2>Sum is {{sum}}</h2>
+    <button @click="changeSum">Change sum</button>
+
+    <button @click="changeCar">Change Car</button>
   </div>
 </template>
 
 <style scoped>
-
+button{
+  margin: 0 10px;
+}
 </style>
