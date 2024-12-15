@@ -1,22 +1,35 @@
 <script lang="ts" setup name="Person">
-  import {ref} from 'vue'
-  let name = ref('Bob');  // name is Responsive
-  let age = ref(19);      // age is Responsive
-  let tel = '1234567890';
+import {reactive, toRef, toRefs} from 'vue'
+  // data
+  let person = reactive({name: 'Mike', age: 18, tel: "1234353"})
+
+  // let {name, age} = person;
+  let {name, age} = toRefs(person)  // use `toRefs`. Responsive object to responsive variables
+  let nl = toRef(person, 'age')
 
   // methods
-  function changeName(){ name.value = 'Mike'}
-  function changeAge(){ age.value = age.value + 1 }
-  function showTel(){ alert(tel) }
+  // function changeName(){ person.name = 'Bob'}
+  // function changeAge(){ person.age += 1}
+  function showTel(){ alert(person.tel) }
+
+  function c1(){
+    // name += '~'   // only change the `name` local variable, not responsive
+    name.value += '~'
+    console.log(name)
+  }
+  function c2(){
+    age.value += 1
+    nl.value += 1
+    console.log(age,nl)
+  }
 </script>
 
 <template>
   <div class="person">
-    <h2>name:{{name}}</h2>
-<!--  not name.value  -->
-    <h2>age:{{age}}</h2>
-    <button @click="changeName">Change Name</button>
-    <button @click="changeAge">Change Age</button>
+    <h2>name:{{person.name }}</h2>
+    <h2>age:{{person.age}}</h2>
+    <button @click="c1">Change Name</button>
+    <button @click="c2">Change Age</button>
     <button @click="showTel">Show telephone</button>
   </div>
 </template>

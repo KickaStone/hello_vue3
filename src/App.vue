@@ -9,7 +9,7 @@
 
 <template>
   <Person/>
-  <Car/>
+<!--  <Car/>-->
 </template>
 
 <style scoped>
