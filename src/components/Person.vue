@@ -1,36 +1,48 @@
-<script lang="ts" setup name="Person">
-import {reactive, toRef, toRefs} from 'vue'
-  // data
-  let person = reactive({name: 'Mike', age: 18, tel: "1234353"})
+<script setup lang="ts">
+  import {ref, computed} from "vue";
 
-  // let {name, age} = person;
-  let {name, age} = toRefs(person)  // use `toRefs`. Responsive object to responsive variables
-  let nl = toRef(person, 'age')
+  let firstName = ref("Alice")
+  let lastName = ref("E")
 
-  // methods
-  // function changeName(){ person.name = 'Bob'}
-  // function changeAge(){ person.age += 1}
-  function showTel(){ alert(person.tel) }
+  //vue2 computed attributes
+  // export default {
+  //   computed:{
+  //
+  //   }
+  // }
 
-  function c1(){
-    // name += '~'   // only change the `name` local variable, not responsive
-    name.value += '~'
-    console.log(name)
+  // In Vue 3, a computed attribute (also known as a computed property) is a feature that allows you to define a property on your Vue component that automatically calculates its value based on other data properties
+  // feature1: cached
+  // feature2: dynamic
+  // feature3: function
+  // let fullName = computed(()=>{  // read only
+  //   return firstName.value.slice(0,1).toUpperCase() + firstName.value.slice(1) + ' ' + lastName.value
+  // })
+  let fullName = computed({ // read and write
+    get(){
+        return firstName.value.slice(0,1).toUpperCase() + firstName.value.slice(1) + ' ' + lastName.value
+    },
+    set(val){
+      console.log('set', val)
+      // add logic to change firstname and lastname
+      firstName.value = val.split(' ')[0]
+      lastName.value = val.split(' ')[1]
+    }
+  })
+
+  function changeFullName(){
+    fullName.value = "A B"
+    console.log(fullName)
   }
-  function c2(){
-    age.value += 1
-    nl.value += 1
-    console.log(age,nl)
-  }
+
 </script>
 
 <template>
   <div class="person">
-    <h2>name:{{person.name }}</h2>
-    <h2>age:{{person.age}}</h2>
-    <button @click="c1">Change Name</button>
-    <button @click="c2">Change Age</button>
-    <button @click="showTel">Show telephone</button>
+    First Name <input type="text" v-model="firstName"/> <br>
+    Last Name <input type="text" v-model="lastName"/> <br>
+    Full Name <span>{{ fullName }}</span> <br>
+    <button @click="changeFullName">Change Full Name</button>
   </div>
 </template>
 
