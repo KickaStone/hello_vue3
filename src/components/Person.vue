@@ -1,24 +1,30 @@
 <template>
   <div class="person">
-    <h2 ref="title">title1</h2>
-    <button @click="showLog">showTitle1ByRef</button>
+
   </div>
 </template>
 
-<script lang="ts" setup>
-  import {ref} from "vue";
+<script lang="ts" setup name="Person">
+  import {type Person, type Persons} from "../types"
+  import {reactive} from "vue";
+  // let person: Person = {id: 'safdj', name:'Bob', age:50}
 
-  let a = ref(0);
-  let b = ref(1);
-  let c = ref(2);
+  // let personList: Person[] = [ // ok
+  // let personList: Array<Person> = [  // also ok
+  // let personList: Persons = reactive([
+  //   {id: 'safdj', name:'Bob', age:50},
+  //   {id: 'safdjsd', name:'Bob1', age:51},
+  //   {id: 'safdjqwe', name:'Bob2', age:52}
+  // ]);
 
-  let title = ref()
-  let person = ref()
-  function showLog(){
-    console.log(title.value);
-  }
+  let personList = reactive<Persons>([
+    {id: 'safdj', name:'Bob', age:50},
+    {id: 'safdjsd', name:'Bob1', age:51},
+    {id: 'safdjqwe', name:'Bob2', age:52, gender: 'Male'}, // gender?
+  ]);
+  console.log(personList);
 
-  defineExpose({a, b});
+
 </script>
 
 <style lang="css" scoped>
