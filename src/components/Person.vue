@@ -1,29 +1,42 @@
 <template>
   <div class="person">
-    <h2>Current Sum is {{ sum }}</h2>
-    <button @click="changeSum">Sum + 1</button>
+    <h2>{{person.name}}</h2>
+    <h2>{{person.age}}</h2>
+
+  <button @click="changeName">Change Name</button>
+  <button @click="changeAge">Change Age</button>
+  <button @click="changePerson">Change Person</button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {ref, watch} from 'vue';
 
-let sum = ref(0);
+let person = ref({name: 'bob', age:18});
 
-const y = ref(0);
-const x = ref(0);
-
-function changeSum(){
-  sum.value += 1;
+function changeName() {
+  person.value.name  = 'Alice';
 }
 
-watch(sum, (newValue, oldValue)=>{
-  console.log('sum is changed', oldValue, '->', newValue);
-})
+function changeAge() {
+  person.value.age += 1;
+}
 
-watch([x, ()=>y.value], ([newX, newY])=>{
-  console.log(`x is ${newX}, y is ${newY}`);
-})
+function changePerson() {
+  person.value = {name: 'Bob', age: 18};
+}
+
+// watch(person, (newValue) => { // only care about person's address
+//   console.log(newValue);
+// })
+
+let stopWatch = watch(person, (newValue) => { // also care about the
+  console.log(newValue);
+  if (person.value.age > 20){
+    // stop the watcher
+    stopWatch()
+  }
+}, {deep: true, immediate: true});
 
 </script>
 
