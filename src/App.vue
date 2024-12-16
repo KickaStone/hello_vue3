@@ -5,7 +5,6 @@
     components:{Person}
   }
 </script>
-
 <template>
   <Person/>
 <!--  <Car/>-->
