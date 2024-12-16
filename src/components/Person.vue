@@ -10,33 +10,25 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, watch} from 'vue';
+import {reactive, watch} from 'vue';
 
-let person = ref({name: 'bob', age:18});
+let person = reactive({name: 'bob', age:18});
 
 function changeName() {
-  person.value.name  = 'Alice';
+  person.name  = 'Alice';
 }
 
 function changeAge() {
-  person.value.age += 1;
+  person.age += 1;
 }
 
 function changePerson() {
-  person.value = {name: 'Bob', age: 18};
+  Object.assign(person, {name:"Mark", age: 18});
 }
 
-// watch(person, (newValue) => { // only care about person's address
-//   console.log(newValue);
-// })
-
-let stopWatch = watch(person, (newValue) => { // also care about the
+watch(person, (newValue) => {
   console.log(newValue);
-  if (person.value.age > 20){
-    // stop the watcher
-    stopWatch()
-  }
-}, {deep: true, immediate: true});
+}) // watch reactive object, default { deep: true }, and cannot disable
 
 </script>
 
