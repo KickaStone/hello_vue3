@@ -45,19 +45,9 @@ function changeC2(){
   person.car.c2 = 'Audi';
 }
 
-// watch(person.name, (newValue)=>{
-//   console.log(person, newValue);
-// });
-
-// watch a basic variable
-// watch(() => person.name, (newValue) => { // watch a getter function
-//   console.log(newValue);
-// })
-
-watch(() => person.car, (newValue) => {  // best practice
-  console.log(newValue)
-}, {deep: true})
-
+watch([()=>person.name, person.car], (newValue)=>{
+  console.log(newValue);
+})
 
 </script>
 
