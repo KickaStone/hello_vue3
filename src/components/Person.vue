@@ -1,30 +1,37 @@
 <template>
   <div class="person">
-
+    <ul>
+      <li v-for="person in list" :key="person.id">
+        Name: {{ person.name }} -- Age: {{ person.age }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-  import {type Person, type Persons} from "../types"
-  import {reactive} from "vue";
-  // let person: Person = {id: 'safdj', name:'Bob', age:50}
+  import {Persons} from "../types";
+  // defineProps(['a', 'personList']);
+  // let data = defineProps(['a', 'list'])
 
-  // let personList: Person[] = [ // ok
-  // let personList: Array<Person> = [  // also ok
-  // let personList: Persons = reactive([
-  //   {id: 'safdj', name:'Bob', age:50},
-  //   {id: 'safdjsd', name:'Bob1', age:51},
-  //   {id: 'safdjqwe', name:'Bob2', age:52}
-  // ]);
+  // receive + type
+  // let data = defineProps<{list: Persons}>();
 
-  let personList = reactive<Persons>([
-    {id: 'safdj', name:'Bob', age:50},
-    {id: 'safdjsd', name:'Bob1', age:51},
-    {id: 'safdjqwe', name:'Bob2', age:52, gender: 'Male'}, // gender?
-  ]);
-  console.log(personList);
+  // receive + type + optional
+  // let data = defineProps<{list?: Persons}>();
 
+  // receive + type + optional + default value
+  let data = withDefaults(defineProps<{list?: Persons, a?:string}>(), {
+    list:()=>[ // Person[]
+      {
+        id: 'retakjsldf',
+        name: "Person",
+        age: 30
+      }
+    ]
+  })
 
+  console.log(data["list"])
+  console.log(data["a"])
 </script>
 
 <style lang="css" scoped>
@@ -33,6 +40,7 @@
   box-shadow: 0 0 10px;
   border-radius: 10px;
   padding: 20px;
+  margin-bottom: 10px;
 }
 button{
   margin: 0 5px
