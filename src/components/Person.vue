@@ -1,54 +1,39 @@
 <template>
   <div class="person">
-    <h2>Name: {{person.name}}</h2>
-    <h2>Age: {{person.age}}</h2>
-    <h2>Car: {{ person.car.c1}}, {{ person.car.c2 }}</h2>
-    <button @click="changeName">changeName</button>
-    <button @click="changeAge">changeAge</button>
-    <button @click="changeC1">changeC1</button>
-    <button @click="changeC2">changeC2</button>
-    <button @click="changeCar">changeCar</button>
-
+    <h2>Temperature: {{temp}}</h2>
+    <h2>Height: {{height}}</h2>
+    <button @click="changeTemp">changeTemp</button>
+    <button @click="changeHeight">changeHeight</button>
   </div>
 </template>
 
 <script lang="ts" setup>
+  import {ref, watch, watchEffect} from "vue";
 
-import {reactive, watch} from "vue";
+  let temp = ref(0);
+  let height = ref(0);
 
-let person = reactive({
-  name: "BOB",
-  age: 18,
-  car: {
-    c1: 'Benz',
-    c2: 'BWM',
+  function changeTemp() {
+    temp.value  += 10;
   }
-})
 
-function changeName() {
-  person.name += '~';
-}
-function changeAge() {
-  person.age += 1;
-}
-function changeCar() {
-  person.car = {
-    c1: 'Benz2024',
-    c2: 'BWM2024',
+  function changeHeight() {
+    height.value += 10;
   }
-}
-function changeC1(){
-  person.car.c1 = 'JEEP';
-}
 
-function changeC2(){
-  person.car.c2 = 'Audi';
-}
-
-watch([()=>person.name, person.car], (newValue)=>{
-  console.log(newValue);
-})
-
+  // watch([temp, height], (value)=>{
+  //   // get latest temperature and height
+  //   let [newTemp, newHeight] = value;
+  //   console.log(newTemp, newHeight);
+  //   if(newTemp >= 60 || newHeight >= 80){
+  //     console.log('Send a request to server....');
+  //   }
+  // })
+  watchEffect(() => {
+    if(temp.value > 60 || height.value > 80){
+      console.log('Send a request to server....')
+    }
+  })
 </script>
 
 <style lang="css">
