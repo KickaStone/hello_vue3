@@ -1,17 +1,36 @@
 <script lang="ts" setup name="App">
   import Person from "./components/Person.vue";
-  import {reactive} from "vue";
-  import type {Persons} from "./types";
+  import {onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref} from "vue";
+  let isShow = ref(true);
 
-  let personList = reactive<Persons>([
-    {id: 'safdj', name:'Bob', age:50},
-    {id: 'safdjsd', name:'Bob1', age:51},
-    {id: 'safdjqwe', name:'Bob2', age:52, gender: 'Male'}, // gender?
-  ]);
+  console.log("App created")
+
+  onBeforeMount(()=>{
+    console.log("App beforeMount")
+  });
+
+  onMounted(()=>{
+    console.log("App mounted")
+  })
+
+  onBeforeUpdate(function () {
+    console.log("App beforeUpdate")
+  })
+
+  onUpdated(()=>{
+    console.log("App updated")
+  })
+
+  onBeforeUnmount(()=>{
+    console.log("App beforeUmounted")
+  })
+
+  onUnmounted(()=>{
+    console.log("App unmounted")
+  })
 </script>
 <template>
-  <Person a="data" :list="personList"/>
-  <Person />
+  <Person v-if="isShow"/>
 </template>
 
 <style scoped>

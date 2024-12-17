@@ -1,37 +1,46 @@
 <template>
   <div class="person">
-    <ul>
-      <li v-for="person in list" :key="person.id">
-        Name: {{ person.name }} -- Age: {{ person.age }}
-      </li>
-    </ul>
+    <h2>Sum is {{sum}}</h2>
+    <button @click="add">Sum + 1</button>
   </div>
 </template>
 
 <script lang="ts" setup name="Person">
-  import {Persons} from "../types";
-  // defineProps(['a', 'personList']);
-  // let data = defineProps(['a', 'list'])
 
-  // receive + type
-  // let data = defineProps<{list: Persons}>();
+import {onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref} from "vue";
 
-  // receive + type + optional
-  // let data = defineProps<{list?: Persons}>();
+let sum = ref(0);
 
-  // receive + type + optional + default value
-  let data = withDefaults(defineProps<{list?: Persons, a?:string}>(), {
-    list:()=>[ // Person[]
-      {
-        id: 'retakjsldf',
-        name: "Person",
-        age: 30
-      }
-    ]
-  })
+function add(){
+  sum.value++;
+}
 
-  console.log(data["list"])
-  console.log(data["a"])
+console.log("\tPerson created")
+
+onBeforeMount(()=>{
+  console.log("\tPerson beforeMount")
+});
+
+onMounted(()=>{
+  console.log("\tPerson mounted")
+})
+
+onBeforeUpdate(function () {
+  console.log("\tPerson beforeUpdate")
+})
+
+onUpdated(()=>{
+  console.log("\tPerson updated")
+})
+
+onBeforeUnmount(()=>{
+  console.log("\tPerson beforeUmounted")
+})
+
+onUnmounted(()=>{
+  console.log("\tPerson unmounted")
+})
+
 </script>
 
 <style lang="css" scoped>
