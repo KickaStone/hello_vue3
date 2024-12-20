@@ -15,18 +15,15 @@
 <!--    display news titles -->
     <ul>
       <li v-for="news in newsList" :key="news.id">
-<!--    first way-->
-<!--        <RouterLink :to="`/news/details?id=${news.id}&title=${news.title}&content=${news.content}`"> {{news.title}}</RouterLink>-->
-<!--    second way -->
         <RouterLink :to="{
-          path: '/news/details/',
-          query: {
+          name: 'Details',  // cannot use 'path'
+          params: {
             id: news.id,
             title: news.title,
-            content: news.content
+            content: news.content,
           }
         }">
-          {{news.title}}
+          {{ news.title }}
         </RouterLink>
       </li>
     </ul>

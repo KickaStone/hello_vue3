@@ -18,7 +18,8 @@ const router     = createRouter({
             component: News,
             children:[
                 {
-                    path: 'details',
+                    name: "Details",
+                    path: 'details/:id/:title/:content？', // placeholder :params, ? optional parameter
                     component: Details
                 }
             ]
