@@ -3,8 +3,8 @@
     <h2 class="title"></h2>
     <div class="navigate">
       <RouterLink to="/home" active-class="active">Home</RouterLink>
-      <RouterLink to="/news" active-class="active">News</RouterLink>
-      <RouterLink to="/about" active-class="active">About</RouterLink>
+      <RouterLink :to="{name: 'Home'}" active-class="active">News</RouterLink>
+      <RouterLink :to="{path:'/about'}" active-class="active">About</RouterLink>
     </div>
   </div>
   <div class="main-content">

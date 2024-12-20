@@ -5,15 +5,19 @@ import News from "../components/News.vue";
 
 const router     = createRouter({
     history: createWebHistory(),
-    routes:[{
-        path: "/home",
-        component: Home
+    routes:[
+        {
+            name:"Home",
+            path: "/home",
+            component: Home
         },
         {
+            name: "News",
             path: "/news",
             component: News
         },
         {
+            name: "About",
             path: "/about",
             component: About
         }
