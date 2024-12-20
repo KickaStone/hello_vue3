@@ -3,7 +3,7 @@
     <h2 class="title"></h2>
     <div class="navigate">
       <RouterLink to="/home" active-class="active">Home</RouterLink>
-      <RouterLink :to="{name: 'Home'}" active-class="active">News</RouterLink>
+      <RouterLink :to="{name: 'News'}" active-class="active">News</RouterLink>
       <RouterLink :to="{path:'/about'}" active-class="active">About</RouterLink>
     </div>
   </div>
@@ -19,7 +19,6 @@ import {RouterView, RouterLink} from "vue-router";
 </script>
 
 <style>
-
 .title {
   text-align: center;
   word-spacing: 5px;
@@ -51,9 +50,6 @@ import {RouterView, RouterLink} from "vue-router";
   font-size: 18px;
   letter-spacing: 5px;
 }
-
-
-
 .navigate a.active {
   background-color: #64967E;
   color: #ffc268;
