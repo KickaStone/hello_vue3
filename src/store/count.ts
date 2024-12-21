@@ -17,5 +17,17 @@ export const useCountStore = defineStore("count", {
             // console.log(this.sum); // option API, use this
             this.sum += value;
         }
+    },
+
+    getters: {
+        bigSum(state){
+            // return 999;
+            return state.sum * 10;
+        },
+        // use getters to process data
+        bigSumV2():number{
+            return this.sum * 10;
+        },
+        bigSumV3: state => state.sum * 10
     }
 })

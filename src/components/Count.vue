@@ -7,9 +7,13 @@ const countStore = useCountStore();
 
 let n = ref(1);
 // let { sum, a, b, c } = toRefs(countStore); // do not write this way, will parse all params
-let {sum, a, b, c} = storeToRefs(countStore);
+let {sum, a, b, c, bigSum, bigSumV2, bigSumV3} = storeToRefs(countStore);
 console.log(toRefs(countStore));
 console.log(storeToRefs(countStore));
+console.log(bigSum.value)
+console.log(bigSumV2.value);
+console.log(bigSumV3.value);
+
 
 function addToCount(x: number) {
   countStore.increment(x);
