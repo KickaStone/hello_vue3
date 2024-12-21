@@ -1,23 +1,13 @@
 <template>
-  <div class="app">
-    <h2 class="title">Routing</h2>
-    <div class="navigate">
-      <RouterLink replace to="/home" active-class="active">Home</RouterLink>
-      <RouterLink replace :to="{name: 'News'}" active-class="active">News</RouterLink>
-      <RouterLink replace :to="{path:'/about'}" active-class="active">About</RouterLink>
-    </div>
-  </div>
-  <div class="main-content">
-<!--    Present components-->
-    <RouterView></RouterView>
-  </div>
-
+  <Count />
+  <br>
+  <LoveTalk />
 </template>
 
 <script lang="ts" setup name="person">
-import {RouterView, RouterLink} from "vue-router";
+import Count from "./components/Count.vue";
+import LoveTalk from "./components/LoveTalk.vue";
 </script>
-
 <style>
 .title {
   text-align: center;
