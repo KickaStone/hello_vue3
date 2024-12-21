@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {ref, toRefs} from "vue";
 import {useCountStore} from "../store/count.ts";
+import {storeToRefs} from "pinia";
 
 const countStore = useCountStore();
 
 let n = ref(1);
+// let { sum, a, b, c } = toRefs(countStore); // do not write this way, will parse all params
+let {sum, a, b, c} = storeToRefs(countStore);
+console.log(toRefs(countStore));
+console.log(storeToRefs(countStore));
 
 function addToCount(x: number) {
   countStore.increment(x);
@@ -13,7 +18,7 @@ function addToCount(x: number) {
 
 <template>
   <div class="count">
-    <h2>Count is : {{ countStore.sum }}</h2>
+    <h2>Count is : {{ sum }}</h2>
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -23,7 +28,7 @@ function addToCount(x: number) {
     <button @click="addToCount(-n)">Minus</button>
     <br>
     <h2>TEST</h2>
-    <p>a:{{ countStore.a }}, b:{{ countStore.b }}, c:{{ countStore.c }}</p>
+    <p>a:{{ a }}, b:{{ b }}, c:{{ c }}</p>
   </div>
 </template>
 

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import {useTalkStore} from "../store/talk.ts";
+import {storeToRefs} from "pinia";
 
 const talkStore = useTalkStore();
-
+let {wordList} = storeToRefs(talkStore);
 </script>
 
 <template>
   <div class="talk">
     <button @click="talkStore.getATalk()">Get a love words</button>
     <ul>
-      <li v-for="wd in talkStore.wordList" :key="wd.id"> {{ wd.title }}</li>
+      <li v-for="wd in wordList" :key="wd.id"> {{ wd.title }}</li>
     </ul>
   </div>
 </template>

@@ -19,5 +19,6 @@ export const useTalkStore = defineStore("talk", {
             let obj = {id: nanoid(), title: content};
             this.wordList.unshift(obj);
         }
+
     }
 })
