@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h2 class="title"></h2>
+    <h2 class="title">Routing</h2>
     <div class="navigate">
       <RouterLink to="/home" active-class="active">Home</RouterLink>
       <RouterLink :to="{name: 'News'}" active-class="active">News</RouterLink>

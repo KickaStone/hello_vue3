@@ -19,8 +19,23 @@ const router     = createRouter({
             children:[
                 {
                     name: "Details",
-                    path: 'details/:id/:title/:content？', // placeholder :params, ? optional parameter
-                    component: Details
+                    path: 'details/:id/:title/:content?', // placeholder :params, ? optional parameter
+                    component: Details,
+
+                    // 1st way
+                    props: true, // all params -> props, not for query
+
+                    // 2nd way, function
+                    // props(route){
+                    //     return route.query
+                    // }
+
+                    // 3rd, object
+                    // props:{
+                    //     id: 100,
+                    //     title : 200,
+                    //     content : 300
+                    // } // fixed
                 }
             ]
         },
