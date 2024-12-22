@@ -4,6 +4,14 @@ import {storeToRefs} from "pinia";
 
 const talkStore = useTalkStore();
 let {wordList} = storeToRefs(talkStore);
+talkStore.$subscribe((mutation, state)=>{ // like `watch`
+  console.log("talk store changed"); // detect changes
+  console.log(mutation);
+  console.log(state);
+
+  localStorage.setItem("talkList", JSON.stringify(state.wordList));
+})
+
 </script>
 
 <template>

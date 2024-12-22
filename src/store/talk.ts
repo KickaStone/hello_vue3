@@ -5,11 +5,7 @@ import {nanoid} from "nanoid";
 export const useTalkStore = defineStore("talk", {
     state() {
         return {
-            wordList: [
-                {id: 'w1', title: "saflsafsjdfla"},
-                {id: 'w2', title: "saflsafsjdflasdafsd"},
-                {id: 'w3', title: "saflsafsjdfladsfadsfadsf"}
-            ]
+            wordList: JSON.parse(localStorage.getItem('talkList') as string) || []
         }
     },
     actions: {
