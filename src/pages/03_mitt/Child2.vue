@@ -5,8 +5,8 @@ import {onUnmounted, ref} from "vue";
   let computer = ref("🖥️iPad")
   let toy = ref("");
   // bind event to emitter
-  emitter.on('send-toy', (value: string) => {
-    console.log('send-toy', value, "to child2");
+  emitter.on('send-toy', (value: any) => {
+    console.log('send toy', value, "to child2");
     toy.value = value;
   });
 

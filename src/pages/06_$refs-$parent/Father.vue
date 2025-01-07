@@ -6,21 +6,21 @@ import {ref} from "vue";
 let house = ref('Apartment');
 let c1 = ref();
 
-/*let obj = reactive({
-  a:1,
-  b:2,
-  c:ref(3)
-})
+// let obj = reactive({
+//   a:1,
+//   b:2,
+//   c:ref(3)
+// })
 
 
-console.log(obj.a);
-console.log(obj.b);
-console.log(obj.c); // Automatic unpacking c (c in reactive object)
+// console.log(obj.a);
+// console.log(obj.b);
+// console.log(obj.c); // Automatic unpacking c (c in reactive object)
 
 function changeToy(){
   console.log(c1.value);
   c1.value.toy = 'sports car';
-}*/
+}
 
 // get all children's ref
 function giveAllowance(refs: {[key: string]:any}){
